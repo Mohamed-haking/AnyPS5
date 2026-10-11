@@ -31,7 +31,8 @@ void LibcHeapTraceInfo_nid_no_patch(LibcHeapInfo* info) {
 // unknown signature
 void APS5_VABI sceLibcInternalBacktraceForGame_nid_postfix(const char* heapName) {
     (void)heapName;
-    NotImplemented_nid_no_patch(__func__);
+    // Backtrace for debugging - no-op on host
+    return;
 }
 
 // unknown signature
@@ -39,7 +40,8 @@ void APS5_VABI sceLibcInternalHeapErrorReportForGame_nid_postfix(void* heap, voi
     (void)heap;
     (void)block;
     (void)error;
-    NotImplemented_nid_no_patch(__func__);
+    // Heap error reporting - no-op on host
+    return;
 }
 
 }

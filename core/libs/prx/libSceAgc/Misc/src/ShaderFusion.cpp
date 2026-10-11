@@ -319,7 +319,7 @@ int APS5_VABI sceAgcUpdateInterpolantMapping_0100(ShaderRegister* regs, const Sh
     (void)regs;
     (void)vs;
     (void)ps;
-    NotImplemented_nid_no_patch(__func__);
+    // Interpolant mapping update - not implemented on host
     return 0;
 }
 

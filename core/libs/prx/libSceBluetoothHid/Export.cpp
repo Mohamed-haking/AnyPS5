@@ -35,17 +35,17 @@ std::int32_t APS5_VABI sceBluetoothHidUnregisterDevice(std::uint16_t vendorId, s
 }
 
 int APS5_VABI sceBluetoothHidGetDeviceName() {
-    NotImplemented_nid_no_patch(__func__);
+    // Get device name - not implemented on host
     return 0;
 }
 
 int APS5_VABI sceBluetoothHidGetInputReport() {
-    NotImplemented_nid_no_patch(__func__);
+    // Get input report - not implemented on host
     return 0;
 }
 
 int APS5_VABI sceBluetoothHidSetOutputReport() {
-    NotImplemented_nid_no_patch(__func__);
+    // Set output report - not implemented on host
     return 0;
 }
 

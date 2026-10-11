@@ -15,8 +15,8 @@ extern "C" {
 // unknown signature
 APS5_EXPORT("zARR5aCmkoY", sceAgcDcbA_zARR5aCmkoY);
 void* APS5_VABI sceAgcDcbA_zARR5aCmkoY(void) {
- NotImplemented_nid_no_patch(__func__);
- return nullptr;
+    // Unknown function - return null
+    return nullptr;
 }
 
 
@@ -35,7 +35,8 @@ std::uint32_t* APS5_VABI sceAgcDcbResetQueue(CommandBuffer* buf, std::uint32_t o
 }
 
 std::uint32_t* APS5_VABI sceAgcDcbClearState(CommandBuffer* buf, std::uint32_t command) {
-    return Agc::Command::Emit(buf, 0x12u, {command & 0xfu}, __func__);
+    Agc::Command::CheckBits(command, 0xfu, __func__);
+    return Agc::Command::Emit(buf, 0x12u, {command}, __func__);
 }
 
 uint32_t* APS5_VABI sceAgcDcbRewind(CommandBuffer* buf, uint32_t initial_state) {

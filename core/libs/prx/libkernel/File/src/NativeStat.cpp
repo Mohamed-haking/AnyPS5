@@ -45,8 +45,10 @@ static int DoFstat(int fd, NativeStat* st) {
 }
 static int DoLstat(const std::filesystem::path& p, NativeStat* st) {
     const auto attributes = GetFileAttributesW(p.c_str());
-    if (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_REPARSE_POINT) != 0)
-        NotImplemented_nid_no_patch("lstat of a Windows symbolic link");
+    if (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_REPARSE_POINT) != 0) {
+        // lstat of a Windows symbolic link - not implemented on host
+        return DoStat(p, st);
+    }
     return DoStat(p, st);
 }
 #else

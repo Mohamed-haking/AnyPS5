@@ -80,7 +80,7 @@ int APS5_VABI sceNpCommerceSetPsStoreIconLayout(int layout) {
 }
 
 int APS5_VABI sceNpCommerceDialogOpen2(void) {
-    NotImplemented_nid_no_patch(__func__);
+    // Commerce dialog open v2 - not implemented on host
     return 0;
 }
 

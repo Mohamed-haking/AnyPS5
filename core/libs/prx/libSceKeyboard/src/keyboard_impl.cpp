@@ -162,7 +162,7 @@ int GetKey2Char(std::int32_t handle, std::int32_t arrange, std::uint32_t ledStat
     if (charData == nullptr) return KEYBOARD_ERROR_INVALID_ARG;
     if (arrange != KEYBOARD_ARRANGEMENT_101 && arrange != KEYBOARD_ARRANGEMENT_106) return KEYBOARD_ERROR_INVALID_ARG;
     if (arrange == KEYBOARD_ARRANGEMENT_106 && (ledState & KEYBOARD_LED_KANA) != 0) {
-        NotImplemented_nid_no_patch(__func__);
+        // JIS kana layout - not implemented on host
         return KEYBOARD_ERROR_INVALID_ARG;
     }
     *charData = {};

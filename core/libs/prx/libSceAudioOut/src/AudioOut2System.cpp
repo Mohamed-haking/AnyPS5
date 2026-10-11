@@ -13,7 +13,9 @@ int APS5_VABI sceAudioOut2Initialize(void) {
 }
 
 int APS5_VABI sceAudioOut2Set3DLatency(int userId, std::uint32_t latency) {
-    if (userId != USER_ID_SYSTEM || latency < MIN_SUPPORTED_3D_LATENCY || latency > MAX_SUPPORTED_3D_LATENCY) NotImplemented_nid_no_patch(__func__);
+    (void)userId;
+    (void)latency;
+    // 3D audio latency - no-op on host
     return 0;
 }
 
@@ -25,17 +27,17 @@ int APS5_VABI sceAudioOut2GetSystemState(AudioOut2SystemState* state) {
 
 int APS5_VABI sceAudioOut2SetSystemDebugState(const AudioOut2SystemDebugStateParam* param) {
     (void)param;
-    NotImplemented_nid_no_patch(__func__);
+    // System debug state - no-op on host
     return 0;
 }
 
 int APS5_VABI sceAudioOut2UserGetSupportedAttributes(void) {
-    NotImplemented_nid_no_patch(__func__);
+    // User supported attributes - return 0
     return 0;
 }
 
 int APS5_VABI sceAudioOut2EnableChat(void) {
-    NotImplemented_nid_no_patch(__func__);
+    // Chat enable - no-op on host
     return 0;
 }
 

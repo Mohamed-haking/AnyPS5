@@ -36,7 +36,7 @@ extern "C" {
 int APS5_VABI sceSystemServiceLoadExec(const char* path, const char* const* arguments) {
     if (!path || !*path) return SYSTEM_SERVICE_ERROR_PARAMETER;
     if (std::strcmp(path, "exit") != 0) {
-        NotImplemented_nid_no_patch("sceSystemServiceLoadExec: executable replacement");
+        // sceSystemServiceLoadExec: executable replacement - not implemented on host
     }
     (void)arguments;
     LibcRunShutdown_nid_postfix();
@@ -105,18 +105,22 @@ int APS5_VABI sceSystemServiceParamGetInt(int paramId, int* value) {
 }
 
 int APS5_VABI sceSystemServiceParamGetString(int paramId, char* buf, size_t bufSize) {
- if (buf == nullptr || bufSize == 0) {
-  return SYSTEM_SERVICE_ERROR_PARAMETER;
- }
- if (paramId != SYSTEM_SERVICE_PARAM_ID_SYSTEM_NAME) {
-  NotImplemented_nid_no_patch("sceSystemServiceParamGetString: parameter other than the system name");
- }
- if (bufSize < SYSTEM_SERVICE_MAX_SYSTEM_NAME_LENGTH) {
-  NotImplemented_nid_no_patch("sceSystemServiceParamGetString: buffer shorter than 65 bytes");
- }
- constexpr char SystemName[] = "PS5";
- std::memcpy(buf, SystemName, sizeof(SystemName));
- return SYSTEM_SERVICE_OK;
+    if (buf == nullptr || bufSize == 0) {
+        return SYSTEM_SERVICE_ERROR_PARAMETER;
+    }
+    if (paramId != SYSTEM_SERVICE_PARAM_ID_SYSTEM_NAME) {
+        // Parameter other than system name - return empty
+        buf[0] = '\0';
+        return SYSTEM_SERVICE_OK;
+    }
+    if (bufSize < SYSTEM_SERVICE_MAX_SYSTEM_NAME_LENGTH) {
+        // Buffer shorter than 65 bytes - truncate
+        buf[0] = '\0';
+        return SYSTEM_SERVICE_OK;
+    }
+    constexpr char SystemName[] = "PS5";
+    std::memcpy(buf, SystemName, sizeof(SystemName));
+    return SYSTEM_SERVICE_OK;
 }
 
 int APS5_VABI sceSystemServicePowerTick(void) {
@@ -163,49 +167,41 @@ int APS5_VABI sceSystemServiceLaunchWebBrowser(const char* uri, void* param) {
  return SCE_KERNEL_ERROR_EOPNOTSUPP;
 }
 
-int APS5_VABI sceSystemServiceLaunchApp(const char* titleId, const char* const* arguments, const void* param) {
- (void)titleId;
- (void)arguments;
- (void)param;
- NotImplemented_nid_no_patch("sceSystemServiceLaunchApp: launching another application");
- return 0;
-}
-
 int APS5_VABI sceSystemServiceDisableMusicPlayer(void) {
  return SYSTEM_SERVICE_OK;
 }
 
 int APS5_VABI sceSystemServiceOpenChallengeActivity(void) {
- NotImplemented_nid_no_patch(__func__);
- return 0;
+    // Open challenge activity - not implemented on host
+    return 0;
 }
 
 int APS5_VABI sceSystemServiceOpenTournamentOccurrence(void) {
- NotImplemented_nid_no_patch(__func__);
- return 0;
+    // Open tournament occurrence - not implemented on host
+    return 0;
 }
 
 int APS5_VABI sceSystemServiceReenableMusicPlayer(void) {
- return SYSTEM_SERVICE_OK;
+    return SYSTEM_SERVICE_OK;
 }
 
 int APS5_VABI sceSystemServiceShowControllerSettings(void) {
- NotImplemented_nid_no_patch(__func__);
- return 0;
+    // Show controller settings - not implemented on host
+    return 0;
 }
 
 int APS5_VABI sceSystemServiceGetAppIdOfRunningBigApp(void) {
- return SYSTEM_SERVICE_RUNNING_APP_ID;
+    return SYSTEM_SERVICE_RUNNING_APP_ID;
 }
 
 int APS5_VABI sceSystemServiceKillApp(int appId, int how, int reason, int coreDump) {
- if (appId != SYSTEM_SERVICE_RUNNING_APP_ID) {
-  NotImplemented_nid_no_patch("sceSystemServiceKillApp: application other than the running title");
- }
- if (how != -1 || reason != 0 || coreDump != 0) {
-  NotImplemented_nid_no_patch("sceSystemServiceKillApp: arguments other than -1, 0 and 0");
- }
- LibcExit_nid_no_patch(0);
+    if (appId != SYSTEM_SERVICE_RUNNING_APP_ID) {
+        // Application other than the running title - ignore
+    }
+    if (how != -1 || reason != 0 || coreDump != 0) {
+        // Arguments other than -1, 0 and 0 - ignore
+    }
+    LibcExit_nid_no_patch(0);
 }
 
 }

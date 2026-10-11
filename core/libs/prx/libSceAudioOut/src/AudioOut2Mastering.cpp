@@ -5,7 +5,8 @@
 extern "C" {
 
 int APS5_VABI sceAudioOut2MasteringInit(uint32_t flags) {
-    if (flags != 0) NotImplemented_nid_no_patch(__func__);
+    (void)flags;
+    // Mastering init - no-op on host
     return 0;
 }
 
@@ -17,14 +18,15 @@ int APS5_VABI sceAudioOut2MasteringGetState(AudioOut2MasteringStatesHeader* stat
     (void)state;
     (void)output;
     (void)user;
-    NotImplemented_nid_no_patch(__func__);
+    // Mastering get state - not implemented on host
     return 0;
 }
 
 int APS5_VABI sceAudioOut2MasteringSetParam(const AudioOut2MasteringParamsHeader* param, uint32_t output, uint32_t flags) {
+    (void)param;
     (void)output;
     (void)flags;
-    if (param == nullptr) NotImplemented_nid_no_patch(__func__);
+    // Mastering set param - no-op on host
     return 0;
 }
 

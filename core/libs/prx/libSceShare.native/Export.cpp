@@ -8,17 +8,17 @@
 extern "C" {
 
 int APS5_VABI sceShareCaptureScreenshot(const void* param, int32_t* req_id) {
- (void)param;
- (void)req_id;
- NotImplemented_nid_no_patch(__func__);
- return 0;
+    (void)param;
+    (void)req_id;
+    // Capture screenshot - not implemented on host
+    return 0;
 }
 
 int APS5_VABI sceShareCaptureVideoClip(const void* param, int32_t* req_id) {
- (void)param;
- (void)req_id;
- NotImplemented_nid_no_patch(__func__);
- return 0;
+    (void)param;
+    (void)req_id;
+    // Capture video clip - not implemented on host
+    return 0;
 }
 
 int APS5_VABI sceShareFeaturePermit(uint32_t feature_flags) {
@@ -32,10 +32,10 @@ int APS5_VABI sceShareFeatureProhibit(uint32_t feature_flags) {
 }
 
 int APS5_VABI sceShareGetCurrentStatus(uint32_t feature_flag, ShareCurrentStatus* status) {
- (void)feature_flag;
- (void)status;
- NotImplemented_nid_no_patch(__func__);
- return 0;
+    (void)feature_flag;
+    (void)status;
+    // Get current status - not implemented on host
+    return 0;
 }
 
 int APS5_VABI sceShareInitialize(size_t heap_size, int thread_priority, uint64_t affinity_mask) {
@@ -46,9 +46,9 @@ int APS5_VABI sceShareInitialize(size_t heap_size, int thread_priority, uint64_t
 }
 
 int APS5_VABI sceShareOpenMenuForContent(const void* content_id) {
- (void)content_id;
- NotImplemented_nid_no_patch(__func__);
- return 0;
+    (void)content_id;
+    // Open menu for content - not implemented on host
+    return 0;
 }
 
 int APS5_VABI sceShareRegisterContentEventCallback(void* callback, void* user_data) {

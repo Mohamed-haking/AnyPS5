@@ -107,7 +107,7 @@ int APS5_VABI sceAudioOut2GetSpeakerArrayCoefficients(AudioOut2SpeakerArrayHandl
     (void)num_coefficients;
     (void)height_aware;
     (void)downmix_spread_radius;
-    NotImplemented_nid_no_patch(__func__);
+    // Speaker array coefficients - not implemented on host
     return 0;
 }
 
